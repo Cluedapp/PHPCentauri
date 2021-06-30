@@ -1,0 +1,43 @@
+{
+    "name": "cluedapp/phpcentauri",
+    "type": "library",
+    "description": "A PHP web API engine by Cluedapp",
+    "keywords": ["Azure","AWS","Blob","Centauri","Cluedapp","Controller","Database","Decorator","Drive","Entity","Framework","GeoIP","Google","Library","Model","MVC","MySQL","ORM","Pattern","PostgreSQL","PgSQL","Redis","REST","Table Storage","State Machine","Unit test","User","View","Web"],
+    "homepage": "https://github.com/cluedapp/phpcentauri",
+    "license": "Unlicense",
+    "authors": [
+        {
+            "name": "cluedapp",
+            "email": "info@cluedapp.com",
+            "homepage": "https://cluedapp.com",
+            "role": "Author"
+        }
+    ],
+    "support": {
+        "email": "info@cluedapp.com"
+	},
+    "require": {
+        "php": ">=5.4"
+    },
+    "suggest": {
+		"aws/aws-sdk-php": "Required by dynamodb.php",
+		"geoip2/geoip2": "Required by geo.php",
+		"google/apiclient": "Required by google.php and drive.php",
+		"microsoft/azure-storage-blob": "Required by blobStorage.php",
+		"microsoft/azure-storage-table": "Required by tableStorage.php",
+        "phpmailer/phpmailer": "Required by email.php",
+		"predis/predis": "Required by redis.php",
+		"sendgrid/sendgrid": "Required by sendgrid.php",
+		"ext-curl": "Required by curl.php and tableStorage.php",
+		"ext-openssl": "Required by openssl.php and tableStorage.php",
+		"ext-mbstring": "Required by tableStorage.php",
+		"ext-pdo-mysql": "Optionally required by db.php, if MySQL support is needed",
+		"ext-pdo-pgsql": "Optionally required by db.php, if PostgreSQL support is needed"
+    },
+    "require": {
+    },
+    "autoload": {
+        "psr-0": { "": "/" },
+        "files": ["lib/autoload.php"]
+    }
+}

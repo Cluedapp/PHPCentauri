@@ -1,0 +1,53 @@
+test pick
+assert
+pick(['a' => 1, 'b' => 2, 'c' => 3], 'a', 'b')
+=
+['a' => 1, 'b' => 2]
+
+test change key name
+assert
+pick(['a' => 1, 'b' => 2], 'a', ['B', 'C'])
+=
+['a' => 1, 'C' => 2]
+
+test pick array of arrays
+assert
+pick([['a' => 1, 'b' => 2], ['A' => 3, 'B' => 4]], 'a', ['B', 'C'])
+=
+[['a' => 1, 'C' => 2], ['a' => 3, 'C' => 4]]
+
+empty output key name
+assert
+pick(['a' => 1, 'b' => 2], 'a', ['B', 'C', ''])
+=
+['a' => 1, 'C' => 2]
+
+pick value by key regex, and cast value
+assert
+pick(['a' => 1, 'b' => 2], 'a', [new RegexAttribute('/B/i'), 'C', i('bool')])
+=
+['a' => 1, 'C' => true]
+
+pick value by key regex
+assert
+pick(['a' => 1, 'b' => 2], 'a', 'C', i('regex("/.+/")'))
+=
+['a' => 1, 'b' => 2]
+
+cast picked value
+assert
+pick(['a' => 1], ['a', i('bool')])
+=
+['a' => true]
+
+ignore key if key already picked
+assert
+pick(['a' => 1], ['a', i('bool')], ['a', i('int')])
+=
+['a' => true]
+
+test pick array
+assert
+pick(['a' => 1, 'b' => 2], new PickArrayAttribute('a', 'b'))
+=
+[['a' => 1, 'b' => 2]]

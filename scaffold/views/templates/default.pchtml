@@ -1,0 +1,23 @@
+<?php # This PCHTML file defines a master template from which other views can inherit ?>
+<html>
+	<head>
+		<?php # Render title from PCHTML view file ?>
+		<title><?php echo render('title'); ?></title>
+	</head>
+	
+	<body>
+		<?php # Render navigation ?>
+		<nav>Home | Login | About</nav>
+
+		<?php # Render body from PCHTML view file ?>
+		<?php echo render('body'); ?>
+
+		<?php # Render included script files, which are made available to views that inherit from this master template ?>
+		<script type="text/javascript" src="jquery.js">
+
+		<?php # Render custom script from PCHTML view file ?>
+		<script type="text/javascript">
+			<?php echo render('script'); ?>
+		</script>
+	</body>
+</html>

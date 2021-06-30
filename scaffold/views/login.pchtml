@@ -1,0 +1,21 @@
+<template>templates/default.pchtml</template>
+
+<title>Login Page</title>
+
+<body>
+	<form>
+		<table>
+			<tr><td>Username:</td><td><input name="username"></td></tr>
+			<tr><td>Password:</td><td><input name="password"></td></tr>
+			<tr><td colspan="2"><button>Submit</button></tr>
+		</table>
+	</form>
+</body>
+
+<script>
+	<?php /*
+		jQuery isn't included with PHPCentauri, it is just used below for the sake of an example, to illustrate that scripts included by a PCHTML master template, are made available to PCHTML view files which inherit from that master template.
+		You can use any scripts you want.
+	*/ ?>
+	jQuery('.button').on('click', () => window.alert('Login clicked.'));
+</script>

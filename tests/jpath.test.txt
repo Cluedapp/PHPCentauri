@@ -1,0 +1,11 @@
+test 1
+assert
+jpath('{"people":{"age": [{"age":1},{"age":2},{"age":3},{"age":4}], "names":[{"name":"John","surname":"Smith"},{"name":"Mary","surname":"Smith"}]}}', 'people.names.name')
+=
+["John", "Mary"]
+
+test 2
+assert
+jpath('{"people":{"age": [{"age":1},{"age":2},{"age":3},{"age":4}], "names":[{"name":"John","surname":"Smith"},{"name":"Mary","surname":"Smith"}]}}', 'people.age.1.age')
+=
+2

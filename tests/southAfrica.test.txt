@@ -1,0 +1,23 @@
+test that valid ID numbers are reported as valid
+assert
+sa_id('9504064505086')
+=
+true
+
+test that invalid ID numbers are reported as invalid
+assert
+sa_id('9504064505087')
+=
+false
+
+test that empty ID numbers are reported as invalid
+assert
+sa_id('')
+=
+false
+
+test that randomly generated SA ID has correct format
+assert
+sa_id(generate_sa_id())
+=
+true

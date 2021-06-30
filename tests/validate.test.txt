@@ -1,0 +1,119 @@
+test and
+assert
+validate_object(['value' => 1], ['value' => i('1 and 2')], true)
+=
+['Format', 'value']
+
+test or
+assert
+validate_object(['value' => 1], ['value' => i('1 or 2')], true)
+=
+true
+
+test array in schema 1
+assert
+validate_object(['number' => 1], ['number' => [1, 2]], true)
+=
+['Format','number']
+
+test array in schema 2
+assert
+validate_object(['number' => 2], ['number' => [1, 2]], true)
+=
+['Format','number']
+
+test array in schema 3
+assert
+validate_object(['number' => 3], ['number' => [1, 2]], true)
+=
+['Format','number']
+
+test array in schema 4
+assert
+validate_object(['number' => [1, 2]], ['number' => [1, 2]], true)
+=
+true
+
+test array in schema 5
+assert
+validate_object(['number' => [1, 2, 3]], ['number' => [1, 2]], true)
+=
+['Format','number']
+
+test array in object
+assert
+validate_object(['number' => [1, 2, 3]], ['number' => 1], true)
+=
+['Format','number']
+
+test regex 1
+assert
+validate_object(['string' => 'abc'], ['string' => i('regex("[a-z]{3}")')], true)
+=
+true
+
+test regex 2
+assert
+validate_object(['number' => 123], ['number' => i('regex("[a-z]{3}")')], true)
+=
+['Format', 'number']
+
+test email 1
+assert
+validate_object(['email' => 'info@cluedapp.com'], ['email' => i('email')], true)
+=
+true
+
+test email 2
+assert
+validate_object(['email' => 'cluedapp.com'], ['email' => i('email')], true)
+=
+['Format', 'email']
+
+test missing element 1
+assert
+validate_object(['string' => 1], ['number' => 1], true)
+=
+['Null', 'number']
+
+test missing element 2
+assert
+validate_object(['number' => 1], ['number' => 1], true)
+=
+true
+
+test missing element 3
+assert
+validate_object(['string' => 1], ['number' => 1], false)
+=
+true
+
+test missing element 4
+assert
+validate_object(['string' => null], ['number' => i('require')], true)
+=
+['Null', 'number']
+
+test missing element 5
+assert
+validate_object(['number' => 0], ['number' => i('require')], true)
+=
+['Null', 'number']
+
+test multiple items in object
+assert
+validate_object(['number' => 0, 'string' => 'abc'], ['number' => i('numeric'), 'string' => i('string')], true)
+=
+true
+
+test strings
+assert
+validate_object(['letters' => ['a', 'b', 'c']], ['letters' => i('strings')], true)
+=
+true
+
+test object element
+assert
+validate_object(['obj' => (object)['name' => 'PHPCentauri', 'version' => 1]], ['obj' => ['name' => i('string'), 'version' => i('int')]])
+=
+true

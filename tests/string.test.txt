@@ -1,0 +1,47 @@
+string_to_range with empty string
+assert
+string_to_range('')
+=
+[]
+
+string_to_range with non-numeric string
+assert
+string_to_range('xyz')
+=
+[]
+
+string_to_range with number
+assert
+string_to_range('123')
+=
+[123]
+
+string_to_range with invalid range
+assert
+string_to_range('123-xyz')
+=
+[]
+
+string_to_range with invalid range
+assert
+string_to_range('123-')
+=
+[]
+
+string_to_range with invalid range
+assert
+string_to_range('123-456-')
+=
+[]
+
+string_to_range with valid range
+assert
+string_to_range('1-10')
+=
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+string_to_range with multiple valid ranges
+assert
+string_to_range('1-3,4,9-10')
+=
+[1, 2, 3, 4, 9, 10]

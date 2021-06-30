@@ -1,0 +1,71 @@
+test 1
+assert
+__createCriteria(['a' => 1, new BoolOrAttribute([['value' => ['b' => 2, 'c' => 3]], ['value' => ['d' => 4, 'e' => 5]]]), 'f' => 6])
+=
+"A eq '1' and ((B eq '2' and C eq '3') or (D eq '4' and E eq '5')) and F eq '6'"
+
+test 2
+assert
+__createCriteria(['a' => 1, 'b' => 2, ['value' => ['c' => 3, 'd' => 4]], 'e' => 5])
+=
+"A eq '1' and B eq '2' and (C eq '3' and D eq '4') and E eq '5'"
+
+test 3
+assert
+__createCriteria(['a' => 1, new BoolOrAttribute(['b' => 2, 'c' => 3]), 'd' => 4])
+=
+"A eq '1' and (B eq '2' or C eq '3') and D eq '4'"
+
+test 4
+assert
+__createCriteria(['a' => 1, new BoolOrAttribute(['b' => ['value' => ['c' => 3, 'd' => 4]], 'e' => 5]), 'f' => 6])
+=
+"A eq '1' and ((B eq '3' and B eq '4') or E eq '5') and F eq '6'"
+
+test 5
+assert
+__createCriteria(['a' => 1, new BoolOrAttribute([['value' => ['b' => 2, 'c' => 3]], 'd' => 4]), 'e' => 5])
+=
+"A eq '1' and ((B eq '2' and C eq '3') or D eq '4') and E eq '5'"
+
+test 6
+assert
+__createCriteria(['a' => 1, new BoolOrAttribute([['value' => ['b' => 2, 'c' => 3]], ['value' => ['d' => 4, 'e' => 5]]]), 'f' => 6])
+=
+"A eq '1' and ((B eq '2' and C eq '3') or (D eq '4' and E eq '5')) and F eq '6'"
+
+test 7
+assert
+__createCriteria(['a' => 1, new BoolOrAttribute([['value' => ['b' => 2, new BoolOrAttribute(['c' => 3, 'd' => 4])]], ['value' => ['e' => 5, 'f' => 6]]]), 'g' => 7])
+=
+"A eq '1' and ((B eq '2' and (C eq '3' or D eq '4')) or (E eq '5' and F eq '6')) and G eq '7'"
+
+test 8
+assert
+__createCriteria(['a' => [1, 2, 3]])
+=
+"(A eq '1' or A eq '2' or A eq '3')"
+
+test greater than
+assert
+__createCriteria(['a' => 1, 'b' => 2, ['value' => ['c' => ['operator' => '>', 'value' => 3], 'd' => 4]], 'e' => 5])
+=
+"A eq '1' and B eq '2' and (C gt '3' and D eq '4') and E eq '5'"
+
+test less than
+assert
+__createCriteria(['a' => 1, 'b' => 2, ['value' => ['c' => ['operator' => '<', 'value' => 3], 'd' => 4]], 'e' => 5])
+=
+"A eq '1' and B eq '2' and (C lt '3' and D eq '4') and E eq '5'"
+
+test equal
+assert
+__createCriteria(['a' => 1, 'b' => 2, ['value' => ['c' => ['operator' => '=', 'value' => 3], 'd' => 4]], 'e' => 5])
+=
+"A eq '1' and B eq '2' and (C eq '3' and D eq '4') and E eq '5'"
+
+test not equal
+assert
+__createCriteria(['a' => 1, 'b' => 2, ['value' => ['c' => ['operator' => '!', 'value' => 3], 'd' => 4]], 'e' => 5])
+=
+"A eq '1' and B eq '2' and (C ne '3' and D eq '4') and E eq '5'"
